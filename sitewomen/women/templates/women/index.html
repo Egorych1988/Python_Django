@@ -5,14 +5,22 @@
     <title>{{ title }}</title>
 </head>
 <body>
-<p>{{ menu }}</p>
-<p>{{ title }}</p>
-<p>{{ flout|add:'11' }}</p>
-<p>{{ lst }}</p>
-<p>{{ set }}</p>
-<p>{{ dict }}</p>
-<p>{{ obj }}</p>
-<h1>{{ title|upper }}</h1>
+<p>{{ menu|join:' | ' }}</p>
+<h1>{{ title }}</h1>
+
+<ul>
+    {% for p in posts %}
+    {% if p.is_published %}
+    <li>
+        <h1> {{p.title}} </h1>
+        <p> {{p.content}} </p>
+        {% if not forloop.last %}
+        <hr>
+        {% endif %}
+    </li>
+    {% endif %}
+    {% endfor %}
+</ul>
 
 </body>
 </html>
